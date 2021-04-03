@@ -8,4 +8,4 @@ Also Check out the following repositories: </br>
 1. Stock Analysis - Analysis of various stocks and generating a portfolio using Python
 2. Disaster Response Pipeline - Identifying disaster messages to streamline relief efforts
 3. Location Finder - Finds optimum real world location based on user defined criteria, data obtained from Foursquare API
-Recommender Systems - Recommends movies to users based on SVM
+Recommender Systems - Recommends movies to users based on SVM 
