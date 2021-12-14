@@ -1,0 +1,45 @@
+Python Scripts/Functions:
+
+######################Formatted Subplots ################
+''' Subplots with plot for each plot label '''
+def plot_subplot(df,plot_title,plot_labels):
+    print(df.describe())
+    plot_len=len(plot_labels)
+    spacing=round(df.shape[0]/10)
+    fig,ax=plt.subplots(figsize=([14,10]))
+    ax_prev=ax
+    plt.title(plot_labels,fontsize=12)
+    for i in range(plot_len):
+        plt.subplot(plot_len,1,i+1,sharex=ax_prev)
+        for label in plot_labels[i]:
+            print(label)
+            plt.scatter(df.index,df[label])
+            plt.xticks(rotation=45)
+            fig_curr=plt.gcf()
+            ax_curr=plt.gca()
+            for label in ax_curr.xaxis.get_ticklabels()[::spacing]:
+                label.set_visible(True)
+            plt.legend(plot_labels[i])
+            ax_prev=ax_curr
+    # plt.title(plot_title,fontsize=15)
+    plt.show()
+
+######################Formatted Subplots ################
+''' Group Dataframe by columns as unique values of a particular dataframe column '''
+def group_df_by_values(df_to_group,date_column_name,groupby_column_name,
+                       grouped_column_name):
+    datevalues=df_to_group.reset_index()[date_column_name]\
+        .sort_values().drop_duplicates().tolist()
+    item_list=df_to_group[groupby_column_name].drop_duplicates().tolist()
+    df=pd.DataFrame(index=datevalues,columns=item_list)
+    for item in item_list:
+        df_item=df_to_group[df_to_group[groupby_column_name]==item]
+        for ind in df.index.tolist():
+            try:
+                df.loc[ind,item]=df_item.loc[df_item[date_column_name]==
+                                             ind,grouped_column_name].values[0]
+            except:
+                pass
+        df[item].fillna(method='bfill',inplace=True)
+        df[item].fillna(method='ffill',inplace=True)
+    return df
