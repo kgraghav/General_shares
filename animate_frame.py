@@ -15,17 +15,6 @@ from moviepy.video.io.bindings import mplfig_to_npimage
 from moviepy import *
 import seaborn as sns
 from numpy import array
-import sklearn
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
-import tensorflow as tf
-import keras as ks
-from keras.models import Sequential
-from keras.layers import Dense
-from keras import layers
-from keras import callbacks
-from keras.preprocessing.sequence import TimeseriesGenerator
 from IPython import get_ipython
 get_ipython().magic('clear')
 get_ipython().magic('reset -sf')
